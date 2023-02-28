@@ -1,10 +1,10 @@
-def branch = "production"
+def branch = "staging"
 def remote_name = "origin"
 def directory = "~/be-dumbmerch/"
 def credential = 'appserver'
 def server = 'app@103.67.186.80'
-def image = 'angga6699/dumbmerch-backend'
-def container = 'dumbmerch-backend'
+def image = 'angga6699/dumbmerch-backend-staging'
+def container = 'dumbmerch-backend-staging'
 
 pipeline {
     agent any
@@ -63,7 +63,7 @@ pipeline {
         stage('Push Notification Discord') {
            steps {
                 sshagent([credential]){
-                    discordSend description: "dumbmerch-backend:" + BUILD_ID, footer: "appserver-backend", link: BUILD_URL, result: currentBuild.currentResult, scmWebUrl: '', title: 'dumbmerch-backend', webhookURL: 'https://discord.com/api/webhooks/1080008510240198746/o1cZVi_EFKiwBOTd3GyqGCSBd3VI6XFuyMwmuZL9Wlh-fU3SOU3d_GKyR7ijMVW6vQ0V'
+                    discordSend description: "dumbmerch-backend-staging:" + BUILD_ID, footer: "appserver-backend-staging", link: BUILD_URL, result: currentBuild.currentResult, scmWebUrl: '', title: 'dumbmerch-backend-staging', webhookURL: 'https://discord.com/api/webhooks/1080008510240198746/o1cZVi_EFKiwBOTd3GyqGCSBd3VI6XFuyMwmuZL9Wlh-fU3SOU3d_GKyR7ijMVW6vQ0V'
                 }
             }
         }
